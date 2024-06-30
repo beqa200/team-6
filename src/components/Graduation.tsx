@@ -19,7 +19,7 @@ export default function Graduation({
   return (
     <GraduationDiv>
       <StyledGraduation error={error}>
-        <p>დამთავრების რიცხვი</p>
+        <p style={{ textWrap: "nowrap" }}>დამთავრების რიცხვი</p>
         <input
           type="date"
           onKeyDown={handleGeorgianInput}

@@ -56,7 +56,6 @@ const StyledDiv2 = styled.div`
   }
 `;
 
-// HomePage Component
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
 

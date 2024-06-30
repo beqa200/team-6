@@ -73,9 +73,15 @@ export default function Degree({
 
         {isDegreeModalOpen && (
           <SelectOptions onClick={() => setIsDegreeModalOpen(false)}>
-            <h4 onClick={() => setDegree("S")}>{degreeChoices.S}</h4>
-            <h4 onClick={() => setDegree("B")}>{degreeChoices.B}</h4>
-            <h4 onClick={() => setDegree("M")}>{degreeChoices.M}</h4>
+            <h4 onClick={() => setDegree(degreeChoices.S)}>
+              {degreeChoices.S}
+            </h4>
+            <h4 onClick={() => setDegree(degreeChoices.B)}>
+              {degreeChoices.B}
+            </h4>
+            <h4 onClick={() => setDegree(degreeChoices.M)}>
+              {degreeChoices.M}
+            </h4>
           </SelectOptions>
         )}
       </Select>

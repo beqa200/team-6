@@ -44,7 +44,13 @@ function EducationPage() {
     },
   });
 
-  const { currentPageNumber } = useContext(Context);
+  const {
+    // personalData,
+    // educationData,
+    // experienceData,
+    currentPageNumber,
+    setIsLoading,
+  } = useContext(Context);
 
   const data = localStorage.getItem("resume");
   const levani = data && JSON.parse(data);
@@ -76,18 +82,15 @@ function EducationPage() {
   });
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
+    setIsLoading(true);
+    const delay = (ms: number) =>
+      new Promise((resolve) => setTimeout(resolve, ms));
+    await delay(1500);
+
     console.log(data);
-    try {
-      await fetch("https://cv-colab-algouni.onrender.com/api/cv/", {
-        method: "POST",
 
-        body: JSON.stringify(wholeResumeData),
-      });
-
-      console.log("GAIGZAVNAAAAAAAAAAAAA SUIIIIIIIIIi");
-    } catch (error) {
-      console.log(error);
-    }
+    setIsLoading(false);
+    navigate("/resume");
   };
 
   useEffect(() => {

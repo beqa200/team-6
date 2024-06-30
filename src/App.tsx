@@ -44,6 +44,8 @@ export interface IContext {
   setPersonalData: React.Dispatch<React.SetStateAction<IFormInput>>;
   educationData: FormData;
   setEducationData: React.Dispatch<React.SetStateAction<FormData>>;
+  loading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface IWholeResume {
@@ -90,11 +92,13 @@ export const Context = createContext<IContext>({
     education: [],
   },
   setEducationData: () => {},
+  loading: false,
+  setIsLoading: () => {},
 });
 
 function App() {
   const [showExperienceInResume, setShowExperienceInResume] = useState(false);
-
+  const [loading, setIsLoading] = useState(false);
   const [currentPageNumber, setCurrentPageNumber] = useState(() => {
     const data = localStorage.getItem("currentPage");
     return data ? JSON.parse(data) : 1;
@@ -145,6 +149,8 @@ function App() {
       <GlobalStyles />
       <Context.Provider
         value={{
+          loading,
+          setIsLoading,
           currentPageNumber,
           setCurrentPageNumber,
           experienceData,
@@ -160,11 +166,11 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/resume" element={<ResumePage />} />
             <Route element={<Layout />}>
               <Route path="/education" element={<EducationPage />} />
               <Route path="/experience" element={<ExperiencePage />} />
               <Route path="/personal" element={<PersonalPage />} />
-              <Route path="/resume" element={<ResumePage />} />
             </Route>
           </Routes>
         </BrowserRouter>

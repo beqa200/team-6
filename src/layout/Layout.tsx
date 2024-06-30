@@ -1,16 +1,23 @@
 import { Outlet } from "react-router-dom";
 import ResumeComponent from "../components/ResumeComponent";
 import styled from "styled-components";
+import { Context } from "../App";
+import { useContext } from "react";
+import Loading from "../components/Loading";
 
 function Layout() {
+  const { loading } = useContext(Context);
+  if (loading) return <Loading />;
   return (
     <StyledLayout>
-      <Main>
-        <Outlet />
-      </Main>
-      <CvContainer>
-        <ResumeComponent />
-      </CvContainer>
+      <>
+        <Main>
+          <Outlet />
+        </Main>
+        <CvContainer>
+          <ResumeComponent />
+        </CvContainer>
+      </>
     </StyledLayout>
   );
 }

@@ -86,12 +86,6 @@ function PersonalPage() {
 
   const phoneValue = watch("phone");
 
-  // const handlePhoneInput = (e: ChangeEvent<HTMLInputElement>) => {
-  //   const value = e.target.value;
-  //   const sanitizedValue = value.replace(/[^\d+]/g, "");
-  //   e.target.value = sanitizedValue;
-  // };
-
   useEffect(() => {
     localStorage.setItem("currentPage", JSON.stringify(1));
     const data = localStorage.getItem("currentPage");

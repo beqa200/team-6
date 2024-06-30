@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import emailIcon from "../assets/emailSymbol.png";
 import phoneIcon from "../assets/phone.png";
-// import userProfile from "../assets/userImage.png";
+
 import { useContext } from "react";
 import { Context } from "../App";
 
@@ -34,13 +34,11 @@ export default function About() {
         </AboutMeText>
       </Information>
 
-      {/* {personalData.avatar && ( */}
       <img
         style={{ maxWidth: "246px", maxHeight: "246px", borderRadius: "50%" }}
         src={personalData.avatar}
         alt="user-profile"
       />
-      {/* )} */}
     </StyledAbout>
   );
 }

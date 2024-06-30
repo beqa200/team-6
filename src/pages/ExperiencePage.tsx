@@ -17,7 +17,6 @@ function ExperiencePage() {
   const { setExperienceData, setCurrentPageNumber, currentPageNumber } =
     useContext(Context);
   const navigate = useNavigate();
-  // setShowExperienceInResume(true);
 
   const [required, setRequired] = useState<Irequired>({});
 
@@ -146,10 +145,6 @@ function ExperiencePage() {
       );
     }
 
-    // localStorage.setItem(
-    //   "resume",
-    //   JSON.stringify({ experience: filteredExperience })
-    // );
     setExperienceData({ experience: filteredExperience });
     navigate("/education");
   };
