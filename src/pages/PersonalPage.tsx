@@ -424,7 +424,7 @@ function PersonalPage() {
                 }}
                 render={({ field }) => (
                   <InputMask
-                    mask="+999 999 99 99 99"
+                    mask={"+\\9\\95 999 99 99 99"}
                     maskChar=" "
                     {...field}
                     placeholder="+995 XXX XX XX XX"

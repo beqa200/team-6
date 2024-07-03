@@ -20,9 +20,9 @@ function ExperiencePage() {
 
   const [required, setRequired] = useState<Irequired>({});
 
-  const handleRefresh = () => {
-    window.location.reload();
-  };
+  // const handleRefresh = () => {
+  //   window.location.reload();
+  // };
 
   const {
     handleSubmit,
@@ -81,28 +81,51 @@ function ExperiencePage() {
         // aqqq
       }
     });
+    const updateRequiredFields = () => {
+      const updatedRequiredFields = watch().experience.map((item, index) => {
+        if (index === 0) {
+          return { [index]: true };
+        }
+
+        const allFieldsEmpty =
+          item.description.trim().length === 0 &&
+          item.employer.trim().length === 0 &&
+          item.date_finished.trim().length === 0 &&
+          item.date_started.trim().length === 0 &&
+          item.position.trim().length === 0;
+
+        return { [index]: !allFieldsEmpty };
+      });
+
+      setRequired(Object.assign({}, ...updatedRequiredFields));
+    };
+    console.log("ok");
+    updateRequiredFields();
     console.log(subscription);
   }, [watch, setExperienceData, currentPageNumber]);
 
   useEffect(() => {
-    const updatedRequiredFields = fields.map((item, index) => {
-      if (index === 0) {
-        return { [index]: true };
-      }
+    // const updateRequiredFields = () => {
+    //   const updatedRequiredFields = watch().experience.map((item, index) => {
+    //     if (index === 0) {
+    //       return { [index]: true };
+    //     }
+    //     const allFieldsEmpty =
+    //       item.description.trim().length === 0 &&
+    //       item.employer.trim().length === 0 &&
+    //       item.date_finished.trim().length === 0 &&
+    //       item.date_started.trim().length === 0 &&
+    //       item.position.trim().length === 0;
+    //     return { [index]: !allFieldsEmpty };
+    //   });
+    //   setRequired(Object.assign({}, ...updatedRequiredFields));
+    // };
+    // console.log("ok");
+    // updateRequiredFields();
+  }, [fields, watch]);
 
-      const allFieldsEmpty =
-        item.description.trim().length === 0 &&
-        item.employer.trim().length === 0 &&
-        item.date_finished.trim().length === 0 &&
-        item.date_started.trim().length === 0 &&
-        item.position.trim().length === 0;
-
-      return { [index]: !allFieldsEmpty };
-    });
-
-    setRequired(Object.assign({}, ...updatedRequiredFields));
-  }, [fields, watch, setExperienceData, reset, append]);
-
+  console.log(watch().experience);
+  console.log(required);
   useEffect(() => {
     const storedData = localStorage.getItem("resume");
     if (storedData) {
@@ -190,13 +213,13 @@ function ExperiencePage() {
                     type="text"
                     {...register(`experience.${index}.position`, {
                       required: {
-                        value: required[index] || false,
+                        value: required[index],
                         message:
                           "Position is required for all but the first entry",
                       },
                       minLength: { value: 2, message: "Minimum 2 characters" },
                     })}
-                    onBlur={handleRefresh}
+                    // onBlur={handleRefresh}
                   />
 
                   {errors.experience?.[index]?.position && (
@@ -232,7 +255,7 @@ function ExperiencePage() {
                     type="text"
                     {...register(`experience.${index}.employer`, {
                       required: {
-                        value: required[index] || false,
+                        value: required[index],
                         message:
                           "Position is required for all but the first entry",
                       },
